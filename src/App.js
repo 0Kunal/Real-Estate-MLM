@@ -14,6 +14,7 @@ const App = () => {
     {
       path: "/",
       element: <MainLayout />,
+
       children: [
         {
           path: "/",

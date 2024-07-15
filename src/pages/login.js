@@ -11,13 +11,14 @@ import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import LoadingOverlay from "../components/LoadingOverlay";
 import { useNavigate } from "react-router-dom";
+import { login } from "../redux/thunk/user";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "tiger@example.com",
+    email: "admin@gmail.com",
     password: "password123",
   });
 
@@ -29,14 +30,16 @@ const SignInPage = () => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-      // await dispatch(signIn(formData)).unwrap();
+      const user = await dispatch(login(formData)).unwrap();
       setLoading(false);
-      navigate("/");
+      if (user) {
+        navigate("/", { replace: true });
+      }
     } catch (error) {
-      setLoading(false);
       console.error(error);
+      setLoading(false);
     }
   };
 

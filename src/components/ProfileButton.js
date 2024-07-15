@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebaseConfig";
 
 const ProfileButton = ({ setLoading }) => {
   const navigate = useNavigate();
@@ -44,8 +45,10 @@ const ProfileButton = ({ setLoading }) => {
         <MenuItem
           onClick={() => {
             setLoading(true);
-            setAnchorElUser(null);
-            navigate("/login");
+            auth.signOut().then(() => {
+              setLoading(false);
+              // navigate("/login", { replace: true });
+            });
           }}
         >
           <Typography textAlign="center">Logout</Typography>

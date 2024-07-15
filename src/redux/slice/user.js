@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllUsers, getUserById } from "../thunk/user";
+import { getAllUsers, getUserById, login } from "../thunk/user";
 
 const initState = {
   loading: false,
-  users: [],
-  selectedUser: {},
 };
 
 const UserSlice = createSlice({
@@ -13,12 +11,20 @@ const UserSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(login.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+      })
       .addCase(getAllUsers.pending, (state, action) => {
         state.loading = true;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.loading = false;
@@ -28,7 +34,6 @@ const UserSlice = createSlice({
       })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedUser = action.payload;
       })
       .addCase(getUserById.rejected, (state, action) => {
         state.loading = false;
