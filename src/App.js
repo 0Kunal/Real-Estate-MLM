@@ -1,4 +1,5 @@
 import "./App.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
