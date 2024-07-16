@@ -17,13 +17,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <AppBar component="nav" sx={{ paddingX: 5 }}>
+    <AppBar component="nav">
       {loading && <LoadingOverlay />}
       <Toolbar>
         <img
           src="https://www.vhv.rs/dpng/d/573-5732729_yourlogo-png-transparent-png.png"
           alt="brand logo"
           style={{ height: "40px", objectFit: "contain" }}
+          onClick={() => navigate("/")}
         />
         <Box sx={{ flexGrow: 1 }} />
 
@@ -41,6 +42,14 @@ const Navbar = () => {
             }}
           >
             Properties
+          </Button>
+          <Button
+            sx={{ color: "white", fontSize: 14, fontWeight: 700 }}
+            onClick={() => {
+              navigate("/aboutus");
+            }}
+          >
+            About Us
           </Button>
           <Button
             sx={{ color: "white", fontSize: 14, fontWeight: 700 }}

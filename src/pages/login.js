@@ -53,7 +53,7 @@ const SignInPage = () => {
         md={7}
         sx={{
           backgroundImage:
-            "url(https://png.pngtree.com/thumb_back/fh260/background/20230527/pngtree-nature-wallpapers-image_2683049.jpg)",
+            "url(https://static.vecteezy.com/system/resources/thumbnails/021/885/298/small_2x/miniature-house-with-keys-on-wooden-background-real-estate-concept-ai-generated-artwork-photo.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",

@@ -6,6 +6,7 @@ import store from "./redux/store";
 import MainLayout from "./layout/mainLayout";
 import Landing from "./pages/landing";
 import Properties from "./pages/properties";
+import AboutUs from "./pages/aboutUs";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
 
@@ -14,7 +15,6 @@ const App = () => {
     {
       path: "/",
       element: <MainLayout />,
-
       children: [
         {
           path: "/",
@@ -23,6 +23,10 @@ const App = () => {
         {
           path: "/properties",
           element: <Properties />,
+        },
+        {
+          path: "/aboutus",
+          element: <AboutUs />,
         },
         {
           path: "/contact",
