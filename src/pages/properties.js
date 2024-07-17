@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Grid,
   Select,
@@ -178,17 +179,26 @@ const dummyData = [
   },
 ];
 
-const Properties = () => {
-  const [properties, setProperties] = useState(dummyData);
+const categories = [
+  "All",
+  "Residential plots/DTCP/HMDA",
+  "Open plots/DTCP/HMDA",
+  "Farm lands",
+];
 
-  const categories = [
-    "All",
-    "Residential plots/DTCP/HMDA",
-    "Open plots/DTCP/HMDA",
-    "Farm lands",
-  ];
+const Properties = () => {
+  const location = useLocation();
+  const [properties, setProperties] = useState(dummyData);
+  const [filters, setFilters] = useState({ category: "All", search: "" });
+
+  useEffect(() => {
+    if (location?.state?.category) {
+      onCategoryChange(location.state.category);
+    }
+  }, [location.state]);
 
   const onCategoryChange = (category) => {
+    setFilters({ ...filters, category });
     if (category === "All") {
       setProperties(dummyData);
     } else {
@@ -199,6 +209,7 @@ const Properties = () => {
   };
 
   const onSearch = (string) => {
+    setFilters({ ...filters, search: string });
     setProperties(
       dummyData.filter((property) =>
         property.title.toLowerCase().includes(string.toLowerCase())
@@ -232,7 +243,7 @@ const Properties = () => {
             size="small"
             sx={{ width: "fit-content" }}
             variant="outlined"
-            defaultValue="All"
+            value={filters.category}
             onChange={(e) => onCategoryChange(e.target.value)}
           >
             {categories.map((category, index) => (
@@ -248,6 +259,7 @@ const Properties = () => {
             sx={{ width: "fit-content" }}
             variant="outlined"
             placeholder="Search by title..."
+            value={filters.search}
             onChange={(e) => onSearch(e.target.value)}
           />
         </Grid>

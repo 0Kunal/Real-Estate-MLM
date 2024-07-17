@@ -5,15 +5,15 @@ import Navbar from "../components/Navbar";
 import { auth } from "../firebaseConfig";
 
 const MainLayout = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        navigate("/login", { replace: true });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (!user) {
+  //       navigate("/login", { replace: true });
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div>

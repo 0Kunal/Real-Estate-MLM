@@ -1,25 +1,13 @@
 import React from "react";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Grid,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
 
-const PropertyCard = ({
-  title,
-  discription,
-  category,
-  address,
-  landmark,
-  city,
-  state,
-  country,
-  price,
-  area,
-  images,
+const ExpertCard = ({
+  imageUrl,
+  name,
+  location,
+  experience,
+  completedProjects,
+  occupation,
 }) => {
   return (
     <Card
@@ -29,7 +17,7 @@ const PropertyCard = ({
         flexDirection: "column",
       }}
     >
-      <CardMedia component="img" height="200" image={images[0]} alt={title} />
+      <CardMedia component="img" height="300" image={imageUrl} alt={name} />
       <CardContent>
         <Typography
           fontSize={22}
@@ -37,34 +25,26 @@ const PropertyCard = ({
           gutterBottom
           textAlign={"center"}
         >
-          {title}
-        </Typography>
-        <Typography
-          fontSize={16}
-          fontWeight={700}
-          color="text.secondary"
-          gutterBottom
-        >
-          Location: {city}, {state}, {country}
+          {name}({occupation})
         </Typography>
         <Grid container justifyContent={"space-between"}>
           <Grid item>
             <Typography fontSize={16} fontWeight={700}>
-              Price: Rs {price}
+              Experience: {experience} years
             </Typography>
           </Grid>
           <Grid item>
             <Typography fontSize={16} fontWeight={700} gutterBottom>
-              Area: {area} sqft
+              Projects: {completedProjects}
             </Typography>
           </Grid>
         </Grid>
         <Typography fontSize={16} fontWeight={700} color="text.secondary">
-          Type: {category}
+          Location: {location}
         </Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default PropertyCard;
+export default ExpertCard;

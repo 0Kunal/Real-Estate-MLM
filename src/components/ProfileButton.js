@@ -9,23 +9,33 @@ const ProfileButton = ({ setLoading }) => {
 
   return (
     <>
-      <Button
-        onClick={(event) => setAnchorElUser(event.currentTarget)}
-        sx={{
-          borderRadius: 10,
-          border: "1px solid #fff",
-          padding: "3px",
-          minWidth: "auto",
-        }}
-      >
-        <Typography
-          fontSize={14}
-          fontWeight={500}
-          sx={{ color: "#fff", marginX: "5px" }}
+      {auth.currentUser ? (
+        <Button
+          onClick={(event) => setAnchorElUser(event.currentTarget)}
+          sx={{
+            borderRadius: 10,
+            border: "1px solid #fff",
+            padding: "3px",
+            minWidth: "auto",
+          }}
         >
-          Kunal Kamat
-        </Typography>
-      </Button>
+          <Typography
+            fontSize={14}
+            fontWeight={500}
+            sx={{ color: "#fff", marginX: "5px" }}
+          >
+            {auth.currentUser.displayName || auth.currentUser.email}
+          </Typography>
+        </Button>
+      ) : (
+        <Button
+          color="warning"
+          variant="contained"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </Button>
+      )}
       <Menu
         sx={{ mt: 1 }}
         id="account-menu"
@@ -47,6 +57,7 @@ const ProfileButton = ({ setLoading }) => {
             setLoading(true);
             auth.signOut().then(() => {
               setLoading(false);
+              setAnchorElUser(null);
               // navigate("/login", { replace: true });
             });
           }}
