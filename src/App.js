@@ -10,6 +10,7 @@ import Properties from "./pages/properties";
 import AboutUs from "./pages/aboutUs";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
+import Profile from "./pages/profile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const App = () => {
         {
           path: "/contact",
           element: <Contact />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
       ],
     },
